@@ -4,6 +4,7 @@ import Main from "./layout/Main";
 import Login from "./component/auth/Login";
 import Register from "./component/auth/Register";
 import Course from "./screen/course/Course";
+import SingleCourse from "./screen/course/SingleCourse";
 
 const router = createBrowserRouter([
   {
@@ -11,9 +12,15 @@ const router = createBrowserRouter([
     element: <Main />,
     children: [
       {
-        path: "/course",
+        path: "/",
         loader: () => fetch("http://localhost:5000/api/course"),
         element: <Course />,
+      },
+      {
+        path: "/course/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/api/course/${params.id}`),
+        element: <SingleCourse />,
       },
       {
         path: "/user/login",
