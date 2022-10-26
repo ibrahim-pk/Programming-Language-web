@@ -12,6 +12,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/course",
+        loader: () => fetch("http://localhost:5000/api/course"),
         element: <Course />,
       },
       {
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+  { path: "*", element: <h1 className="text-center mt-5">Not Found!</h1> },
 ]);
 function App() {
   return <RouterProvider router={router} />;

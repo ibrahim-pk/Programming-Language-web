@@ -3,3 +3,25 @@ body{
 font-family: 'Roboto Slab', serif;
 font-family: 'Ubuntu', sans-serif;
 }
+.navbar{
+  background-color: rgb(109, 13, 130);
+}
+.navbar a{
+  color: white;
+  margin: 2px 20px;
+  font-size: 15px;
+}
+a{
+  text-decoration: none;
+
+}
+li{
+  list-style-type: none;
+}
+.sideNavbar a:hover{
+  color: green;
+  transform: translateY(-5px);
+}
+.sideNavbar li:hover{
+  transform: translateX(5px);
+}
