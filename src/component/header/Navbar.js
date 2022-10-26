@@ -45,9 +45,9 @@ const Navbar = () => {
           </ul>
           <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
             <li className="nav-item mx-3">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="/user/login">
                 Login
-              </a>
+              </Link>
             </li>
             <li className="nav-item mx-2">
               <div className="checkbox">
