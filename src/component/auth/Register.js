@@ -29,14 +29,8 @@ const Register = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         const user = result.user;
-        if (user.emailVerified) {
-          toast("লগ-ইন সম্পন্ন হয়েছে।");
-          navigate(from, { replace: true });
-        } else {
-          sendEmailVerification(auth.currentUser).then(() => {
-            toast("আপনার ই-মেইল ভেরিফাই করে পুনরায় লগ-ইন করুন");
-          });
-        }
+        toast("Login Successfuly");
+        navigate(from, { replace: true });
         // ...
       })
       .catch((error) => {
@@ -49,16 +43,8 @@ const Register = () => {
     signInWithPopup(auth, githubProvider)
       .then((result) => {
         const user = result.user;
-        if (user.emailVerified) {
-          toast("লগ-ইন সম্পন্ন হয়েছে।");
-          setInterval(() => {
-            navigate(from, { replace: true });
-          }, 2000);
-        } else {
-          sendEmailVerification(auth.currentUser).then(() => {
-            toast("আপনার ই-মেইল ভেরিফাই করে পুনরায় লগ-ইন করুন");
-          });
-        }
+        toast("Login Successfuly");
+        navigate(from, { replace: true });
         // ...
       })
       .catch((error) => {
@@ -70,7 +56,7 @@ const Register = () => {
   const HandleSubmit = async (e) => {
     e.preventDefault();
     if (password.length < 6) {
-      alert("পাসওয়ার্ড মিনিমাম ৬ ডিজিট হতে হবে।");
+      alert("Min 6 digit");
       return;
     }
     createUserWithEmailAndPassword(auth, email, password)
@@ -81,22 +67,14 @@ const Register = () => {
         setEmail("");
         setPassword("");
         if (user.emailVerified) {
-          toast("লগ-ইন সম্পন্ন হয়েছে।");
-          setInterval(() => {
-            navigate(from, { replace: true });
-          }, 2000);
+          toast("Login Successfuly");
+          navigate(from, { replace: true });
         } else {
           sendEmailVerification(auth.currentUser).then(() => {
             toast("আপনার ই-মেইল ভেরিফাই করে পুনরায় লগ-ইন করুন");
           });
           navigate("/user/login");
         }
-        sendEmailVerification(auth.currentUser).then(() => {
-          toast("আপনার ই-মেইল ভেরিফাই করে পুনরায় লগ-ইন করুন");
-          setInterval(() => {
-            window.location.href = "/user/login";
-          }, 3000);
-        });
       })
       .catch((error) => {
         //const errorCode = error.code;

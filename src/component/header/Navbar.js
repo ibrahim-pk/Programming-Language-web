@@ -1,11 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../authProvider/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import { signOut } from "firebase/auth";
 const Navbar = () => {
+  const [theme, setTheme] = useState("light");
   const { user, setLoading, auth } = useContext(AuthContext);
   //console.log(user.photoURL);
+
+  const toggleTheme = () => {
+    if (theme === "light") {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
+
   const logOutUser = () => {
     setLoading(true);
     signOut(auth)
@@ -17,11 +30,13 @@ const Navbar = () => {
         toast(error.massage);
       });
   };
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg">
         <Link className="navbar-brand" to="/">
-          Navbar
+          <img className="img-fluid mx-2" src="/image/logo.png" alt="" />
+          <span>Programming-Language</span>
         </Link>
         <button
           className="navbar-toggler"
@@ -83,21 +98,12 @@ const Navbar = () => {
               </li>
             )}
 
-            {/* <li className="nav-item mx-5">
-              <div className="checkbox">
-                <label>
-                  <input
-                    type="checkbox"
-                    checked
-                    data-toggle="toggle"
-                    data-on="Dark"
-                    data-off="Light"
-                    data-onstyle="dark"
-                    data-offstyle="light"
-                  />
-                </label>
-              </div>
-            </li> */}
+            <li className="nav-item mx-4 mt-2">
+              <label className="switch">
+                <input onClick={toggleTheme} type="checkbox" />
+                <span className="slider round"></span>
+              </label>
+            </li>
           </ul>
         </div>
       </nav>

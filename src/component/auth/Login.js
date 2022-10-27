@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,12 +15,14 @@ const Login = () => {
   const githubProvider = new GithubAuthProvider();
   const googleProvider = new GoogleAuthProvider();
   const [email, setEmail] = useState("");
+  const [logUser, setLogUser] = useState(false);
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+
   const { auth, setLoading } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const location = useLocation();
+
   const from = location.state?.from?.pathname || "/";
   console.log(from);
 
@@ -32,8 +34,8 @@ const Login = () => {
         const user = result.user;
         // console.log(user);
         if (user.emailVerified) {
+          setLogUser(true);
           toast("Login Successfuly");
-          navigate(from, { replace: true });
         } else {
           sendEmailVerification(auth.currentUser).then(() => {
             toast("Go to Email and Verify");
@@ -53,8 +55,8 @@ const Login = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         const user = result.user;
-        toast("লগ-ইন সম্পন্ন হয়েছে।");
-        navigate(from, { replace: true });
+        setLogUser(true);
+        toast("Login Successfuly");
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -67,14 +69,9 @@ const Login = () => {
     signInWithPopup(auth, githubProvider)
       .then((result) => {
         const user = result.user;
-        if (user.emailVerified) {
-          toast("লগ-ইন সম্পন্ন হয়েছে।");
-          navigate(from, { replace: true });
-        } else {
-          sendEmailVerification(auth.currentUser).then(() => {
-            toast("আপনার ই-মেইল ভেরিফাই করে পুনরায় লগ-ইন করুন");
-          });
-        }
+        setLogUser(true);
+        toast("Login Successfuly");
+
         // ...
       })
       .catch((error) => {
@@ -82,6 +79,11 @@ const Login = () => {
         toast(errorMessage);
       });
   };
+  useEffect(() => {
+    if (logUser) {
+      navigate(from, { replace: true });
+    }
+  }, [navigate, from, logUser]);
   return (
     <div className="container my-5">
       <div className="card p-4">

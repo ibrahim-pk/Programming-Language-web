@@ -23,6 +23,7 @@ const Checkout = () => {
             type="text"
             className="form-control my-2"
             placeholder="name"
+            required
           />
           <input
             value={user?.email}
@@ -30,6 +31,7 @@ const Checkout = () => {
             readOnly
             type="email"
             placeholder="email"
+            required
           />
           <input
             value={country}
@@ -38,6 +40,7 @@ const Checkout = () => {
             readOnly
             type="text"
             placeholder="Coutry"
+            required
           />
           <input
             value={distic}
@@ -46,6 +49,7 @@ const Checkout = () => {
             readOnly
             type="text"
             placeholder="Distric"
+            required
           />
           <input
             value={zip}
@@ -54,6 +58,7 @@ const Checkout = () => {
             readOnly
             type="text"
             placeholder="Zip code"
+            required
           />
           <button className="btn btn-primary">Process</button>
         </form>

@@ -3,8 +3,8 @@ import React from "react";
 const Header = () => {
   return (
     <div className="aboutProgramming container">
-      <div>
-        <h3 className="my-2">What is a Programming Language?</h3>
+      <div className="whatIsProgramme">
+        <h3 className="my-2 ProgrammingLan">What is a Programming Language?</h3>
         <h6>
           A programming language is a computer language that is used by
           programmers (developers) to communicate with computers. It is a set of
