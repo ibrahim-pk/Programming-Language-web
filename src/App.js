@@ -10,6 +10,7 @@ import Checkout from "./screen/checkout/Checkout";
 import BuySms from "./component/buyMsg/BuySms";
 import PrivateRouter from "./component/router/PrivateRouter";
 import Blog from "./screen/blog/Blog";
+import Faq from "./screen/faq/Faq";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog />,
+      },
+      {
+        path: "/faq",
+        element: <Faq />,
       },
       {
         path: "/course",

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
@@ -21,6 +21,8 @@ const Register = () => {
 
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
+  const [logUser, setLogUser] = useState(false);
+
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -29,6 +31,7 @@ const Register = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         const user = result.user;
+        setLogUser(true);
         toast("Login Successfuly");
         navigate(from, { replace: true });
         // ...
@@ -43,8 +46,9 @@ const Register = () => {
     signInWithPopup(auth, githubProvider)
       .then((result) => {
         const user = result.user;
+        setLogUser(true);
         toast("Login Successfuly");
-        navigate(from, { replace: true });
+
         // ...
       })
       .catch((error) => {
@@ -67,8 +71,8 @@ const Register = () => {
         setEmail("");
         setPassword("");
         if (user.emailVerified) {
+          setLogUser(true);
           toast("Login Successfuly");
-          navigate(from, { replace: true });
         } else {
           sendEmailVerification(auth.currentUser).then(() => {
             toast("আপনার ই-মেইল ভেরিফাই করে পুনরায় লগ-ইন করুন");
@@ -96,6 +100,11 @@ const Register = () => {
         toast(error.massage);
       });
   };
+  useEffect(() => {
+    if (logUser) {
+      navigate(from, { replace: true });
+    }
+  }, [navigate, from, logUser]);
   return (
     <div className="container my-5">
       <div className="card p-4">

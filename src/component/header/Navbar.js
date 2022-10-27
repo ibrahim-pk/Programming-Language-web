@@ -54,7 +54,7 @@ const Navbar = () => {
           <ul className="navbar-nav  mt-2 mt-lg-0">
             <li className="nav-item active">
               <Link className="nav-link" to="/">
-                Home <span className="sr-only">(current)</span>
+                Home
               </Link>
             </li>
             <li className="nav-item">

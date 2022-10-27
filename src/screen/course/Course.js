@@ -27,12 +27,6 @@ const Course = () => {
                     <small>Instructor:{item.author.name}</small>
                     <h5>Price:{item.Price}</h5>
                     {/* <p class="card-text">{item.details}</p> */}
-                    <Link
-                      to={`/course/${item.course_id}`}
-                      className="btn btn-info btn-block align-self-end"
-                    >
-                      Buy Now!
-                    </Link>
                   </div>
                 </Link>
               </div>

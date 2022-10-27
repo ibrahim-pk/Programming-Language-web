@@ -55,9 +55,9 @@ const SingleCourse = () => {
         <div className="col-md-1"></div>
         <div className="col-md-3">
           <div className="card mt-3 p-2">
-            <h4>Details</h4>
+            <h4 className="text-danger">Details</h4>
             <hr />
-            <h5>Price:{singleCourse.Price}</h5>
+            <h5 className="text-danger">Price:{singleCourse.Price}</h5>
             <button className="btn btn-secondary">
               <Link to="/course/checkout" className="nav-link">
                 Checkout
