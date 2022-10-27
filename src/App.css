@@ -49,3 +49,36 @@ li{
   width: 100px;
   border-radius: 50px;
 }
+.logOutBtn{
+  cursor: pointer;
+  color: white;
+}
+.profileImg{
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  border: 1px solid gold;
+}
+.otherLoginSystem{
+ display: flex;
+ justify-content: space-around;
+}
+.successSms{
+  display: flex;
+  justify-content: center;
+}
+.aboutProgramming{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (max-width:662px) {
+  .aboutProgramming{
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+  
+}

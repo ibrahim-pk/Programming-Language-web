@@ -5,6 +5,10 @@ import Login from "./component/auth/Login";
 import Register from "./component/auth/Register";
 import Course from "./screen/course/Course";
 import SingleCourse from "./screen/course/SingleCourse";
+import Home from "./screen/home/Home";
+import Checkout from "./screen/checkout/Checkout";
+import BuySms from "./component/buyMsg/BuySms";
+import PrivateRouter from "./component/router/PrivateRouter";
 
 const router = createBrowserRouter([
   {
@@ -14,7 +18,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         loader: () => fetch("http://localhost:5000/api/course"),
-        element: <Course />,
+        element: <Home />,
       },
       {
         path: "/course",
@@ -38,6 +42,18 @@ const router = createBrowserRouter([
       {
         path: "/user/register",
         element: <Register />,
+      },
+      {
+        path: "/course/checkout",
+        element: (
+          <PrivateRouter>
+            <Checkout />
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/buy/success",
+        element: <BuySms />,
       },
     ],
   },

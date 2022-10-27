@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-
+import { AuthContext } from "../authProvider/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
+import { signOut } from "firebase/auth";
 const Navbar = () => {
+  const { user, setLoading, auth } = useContext(AuthContext);
+  //console.log(user.photoURL);
+  const logOutUser = () => {
+    setLoading(true);
+    signOut(auth)
+      .then(() => {
+        toast("Logout successfuly");
+        window.location = "/";
+      })
+      .catch((error) => {
+        toast(error.massage);
+      });
+  };
   return (
     <div>
       <nav className="navbar navbar-expand-lg">
@@ -44,12 +59,31 @@ const Navbar = () => {
             </li>
           </ul>
           <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
-            <li className="nav-item mx-3">
-              <Link className="nav-link" to="/user/login">
-                Login
-              </Link>
+            <li className="nav-item nav-link">
+              <img
+                className={user ? "profileImg img-fluid" : "img-fluid"}
+                src={user?.photoURL}
+                alt=""
+              />
             </li>
-            <li className="nav-item mx-2">
+            {user?.uid ? (
+              <div>
+                <li
+                  onClick={logOutUser}
+                  className="nav-item logOutBtn nav-link mr-5"
+                >
+                  Logout
+                </li>
+              </div>
+            ) : (
+              <li className="nav-item mr-5">
+                <Link className="nav-link" to="/user/login">
+                  Login
+                </Link>
+              </li>
+            )}
+
+            {/* <li className="nav-item mx-5">
               <div className="checkbox">
                 <label>
                   <input
@@ -63,10 +97,11 @@ const Navbar = () => {
                   />
                 </label>
               </div>
-            </li>
+            </li> */}
           </ul>
         </div>
       </nav>
+      <ToastContainer />
     </div>
   );
 };
