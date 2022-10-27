@@ -72,6 +72,18 @@ li{
   justify-content: center;
   align-items: center;
 }
+.CourseCardHome{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+}
+.CourseCardHome img{
+  max-height: 200px;
+  min-height: 200px;
+}
+
+
+
 
 @media only screen and (max-width:662px) {
   .aboutProgramming{
@@ -79,6 +91,11 @@ li{
     flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
+  }
+  .CourseCardHome{
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    gap: 10px;
   }
   
 }
