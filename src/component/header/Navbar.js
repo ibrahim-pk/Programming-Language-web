@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { signOut } from "firebase/auth";
 const Navbar = () => {
   const [theme, setTheme] = useState("light");
+  const [profineName, setProfileName] = useState(false);
   const { user, setLoading, auth } = useContext(AuthContext);
   //console.log(user.photoURL);
 
@@ -30,7 +31,9 @@ const Navbar = () => {
         toast(error.massage);
       });
   };
-
+  const mouseHandle = () => {
+    setProfileName(!profineName);
+  };
   return (
     <div>
       <nav className="navbar navbar-expand-lg">
@@ -76,10 +79,14 @@ const Navbar = () => {
           <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
             <li className="nav-item nav-link">
               <img
+                onMouseOver={mouseHandle}
                 className={user ? "profileImg img-fluid" : "img-fluid"}
                 src={user?.photoURL}
                 alt=""
               />
+              <small className="mx-2 text-white">
+                {profineName && user?.displayName}
+              </small>
             </li>
             {user?.uid ? (
               <div>
