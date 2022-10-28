@@ -60,7 +60,7 @@ const SingleCourse = () => {
             <h5 className="text-danger">Price:{singleCourse.Price}</h5>
             <button className="btn btn-secondary">
               <Link to="/course/checkout" className="nav-link">
-                Checkout
+                Get premium access
               </Link>
             </button>
           </div>

@@ -117,7 +117,7 @@ const Register = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="form-control my-2"
-              placeholder="Your Name"
+              placeholder="Full Name"
               required
             />
             <input

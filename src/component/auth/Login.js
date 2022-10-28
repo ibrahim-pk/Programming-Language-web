@@ -35,15 +35,18 @@ const Login = () => {
         // console.log(user);
         if (user.emailVerified) {
           setLogUser(true);
+          setLoading(false);
           toast("Login Successfuly");
         } else {
           sendEmailVerification(auth.currentUser).then(() => {
             toast("Go to Email and Verify");
+            setLoading(false);
           });
         }
       })
       .catch((error) => {
         //console.error(error);
+        setLoading(false);
         toast(error.message);
       })
       .finally(() => {
@@ -56,9 +59,11 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         setLogUser(true);
+        setLoading(false);
         toast("Login Successfuly");
       })
       .catch((error) => {
+        setLoading(false);
         const errorMessage = error.message;
         toast(errorMessage);
         // The email of the user's account used.
@@ -69,7 +74,9 @@ const Login = () => {
     signInWithPopup(auth, githubProvider)
       .then((result) => {
         const user = result.user;
+        console.log(user);
         setLogUser(true);
+        setLoading(false);
         toast("Login Successfuly");
 
         // ...
@@ -77,6 +84,7 @@ const Login = () => {
       .catch((error) => {
         const errorMessage = error.message;
         toast(errorMessage);
+        setLoading(false);
       });
   };
   useEffect(() => {

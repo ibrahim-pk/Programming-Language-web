@@ -19,7 +19,8 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        loader: () => fetch("http://localhost:5000/api/course"),
+        loader: () =>
+          fetch("https://server-ibrahimecste.vercel.app/api/course"),
         element: <Home />,
       },
       {
@@ -32,13 +33,16 @@ const router = createBrowserRouter([
       },
       {
         path: "/course",
-        loader: () => fetch("http://localhost:5000/api/course"),
+        loader: () =>
+          fetch("https://server-ibrahimecste.vercel.app/api/course"),
         element: <Course />,
       },
       {
         path: "/course/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/api/course/${params.id}`),
+          fetch(
+            `https://server-ibrahimecste.vercel.app/api/course/${params.id}`
+          ),
         element: <SingleCourse />,
       },
       {
